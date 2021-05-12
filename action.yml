@@ -1,0 +1,15 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+name: Build
+description: Build
+author: mesopelagique
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'codesandbox'
+  color: 'blue'
+inputs:
+  file:
+    description: "Path to the project file"
+    required: false
+

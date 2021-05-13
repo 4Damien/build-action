@@ -38,10 +38,12 @@ If (Length:C16($startupParam)>0)
 	Else 
 		LOG EVENT:C667(Into system standard outputs:K38:9; "‼️ Build failure\n")  // Into system standard error ??
 		If ($status.errors#Null:C1517)
+			LOG EVENT:C667(Into system standard outputs:K38:9; "::group::Compilation errors")
 			var $error : Object
 			For each ($error; $status.errors)
 				cs:C1710.compilationError.new($error).printGithub($config)
 			End for each 
+			LOG EVENT:C667(Into system standard outputs:K38:9; "::endgroup::")
 		End if 
 	End if 
 End if 

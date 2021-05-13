@@ -4,7 +4,7 @@ This action compile the 4D database.
 
 ## Usage
 
-Create a [https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions](workflow file) `.github/workflows/build.yml` in your project.
+Create a [workflow file](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions) `.github/workflows/build.yml` in your project.
 
 ```yml
 name: build
@@ -28,3 +28,7 @@ In `on` section choose the event that trigger the build.
 ## Author
 
 Eric Marchand
+
+## License
+
+MIT

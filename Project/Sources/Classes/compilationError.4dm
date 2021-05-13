@@ -19,10 +19,10 @@ Class constructor($error : Object)
 	
 Function printGithub($config : Object)
 	var $cmd : Text
-	$cmd:=Choose:C955(This:C1470.isError; "error"; "warning")
+	$cmd:=Choose:C955(Bool:C1537(This:C1470.isError); "error"; "warning")
 	
 	var $file : Text
 	$file:=Replace string:C233(File:C1566(This:C1470.code.file.platformPath; fk platform path:K87:2).path; $config.workingDirectory; "")
 	
-	LOG EVENT:C667(Into system standard outputs:K38:9; "::"+$cmd+" file="+$file+",line="+String:C10(This:C1470.code.lineInFile)+"::"+String:C10(This:C1470.message)+"\n")
+	LOG EVENT:C667(Into system standard outputs:K38:9; "::"+$cmd+" file="+String:C10($file)+",line="+String:C10(This:C1470.code.lineInFile)+"::"+String:C10(This:C1470.message)+"\n")
 	

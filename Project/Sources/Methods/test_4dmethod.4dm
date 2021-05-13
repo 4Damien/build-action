@@ -7,14 +7,17 @@ $config:=New object:C1471()
 $config.options:=New object:C1471()
 $config.workingDirectory:=Folder:C1567(Folder:C1567(fk database folder:K87:14).platformPath; fk platform path:K87:2).path
 
+var $folderTest : 4D:C1709.Folder
+$folderTest:=Folder:C1567(Folder:C1567(fk resources folder:K87:11).platformPath; fk platform path:K87:2).folder("test")
+
 $name:="ok"
-$config.file:=Folder:C1567(Folder:C1567(fk resources folder:K87:11).platformPath; fk platform path:K87:2).folder("test").folder($name).folder("Project").file($name+".4DProject")
+$config.file:=$folderTest.folder($name).folder("Project").file($name+".4DProject")
 
 $status:=Compile project:C1760($config.file; $config.options)
 ASSERT:C1129($status.success; "must success")
 
 $name:="ko"
-$config.file:=Folder:C1567(Folder:C1567(fk resources folder:K87:11).platformPath; fk platform path:K87:2).folder("test").folder($name).folder("Project").file($name+".4DProject")
+$config.file:=$folderTest.folder($name).folder("Project").file($name+".4DProject")
 $status:=Compile project:C1760($config.file; $config.options)
 ASSERT:C1129(Not:C34($status.success); "must failed")
 

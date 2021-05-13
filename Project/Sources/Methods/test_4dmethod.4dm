@@ -17,7 +17,3 @@ $status:=Compile project:C1760($prj; $options)
 ASSERT:C1129(Not:C34($status.success); "must failed")
 
 
-For each ($error; $status.errors)
-	cs:C1710.error.new($error).printGithub()
-End for each 
-

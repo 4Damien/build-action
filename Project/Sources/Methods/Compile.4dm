@@ -19,6 +19,7 @@ If (Length:C16($startupParam)>0)
 	Else 
 		LOG EVENT:C667(6; "‼️ Build failure")
 		If ($status.errors#Null:C1517)
+			var $error : Object
 			For each ($error; $status.errors)
 				cs:C1710.error.new($error).printGithub($config)
 			End for each 

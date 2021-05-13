@@ -10,10 +10,14 @@ $options:=New object:C1471()
 $status:=Compile project:C1760($prj; $options)
 ASSERT:C1129($status.success; "must success")
 
+$name:="ko"
 $prj:=Folder:C1567(Folder:C1567(fk resources folder:K87:11).platformPath; fk platform path:K87:2).folder("test").folder($name).folder("Project").file($name+".4DProject")
 $options:=New object:C1471()
 $status:=Compile project:C1760($prj; $options)
 ASSERT:C1129(Not:C34($status.success); "must failed")
 
 
+For each ($error; $status.errors)
+	cs:C1710.error.new($error).printGithub()
+End for each 
 

@@ -1,37 +1,31 @@
 //%attributes = {}
-
-
 var $r : Real
 var $startupParam : Text
 $r:=Get database parameter:C643(User param value:K37:94; $startupParam)
 
 If (Length:C16($startupParam)>0)
 	
-	LOG EVENT:C667(6; "Parsing parameters")
+	LOG EVENT:C667(6; "...Parsing parameters\n")
 	var $config : Object
 	$config:=JSON Parse:C1218($startupParam)
+	$config.path:=File:C1566($config.path)
 	
-	LOG EVENT:C667(6; "Launching compilation")
+	LOG EVENT:C667(6; "...Launching compilation\n")
 	var $status : Object
-	$status:=Compile project:C1760(File:C1566($config.path); $config.options)
+	$status:=Compile project:C1760($config.path; $config.options)
 	
-	If ($status.errors#Null:C1517)
-		// output all
-		LOG EVENT:C667(6; JSON Stringify:C1217($status))
-		
-		// or we could output in std out or std err by line
-/*For each ($error; $status.errors)
-LOG EVENT(6; JSON Stringify($error))  // here we could also format a message like String($err.line)+":"+$err.name+":'+$err.message
-End for each */
+	If ($status.success)
+		LOG EVENT:C667(6; "✅ Build success")
 	Else 
-		//LOG EVENT(6; "All is ok")
+		LOG EVENT:C667(6; "‼️ Build failure")
+		If ($status.errors#Null:C1517)
+			For each ($error; $status.errors)
+				cs:C1710.error.new($error).printGithub($config)
+			End for each 
+		End if 
 	End if 
-	
-	// else assert? or quit with exit code 
 End if 
 
-//LOG EVENT(6; "Will quit")
-If (Not:C34(Shift down:C543))  // allow to open database, but let cli app stop when finish
-	//LOG EVENT(6; "Launch quit")
+If (Not:C34(Shift down:C543))
 	QUIT 4D:C291()
 End if 

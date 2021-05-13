@@ -6,7 +6,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
 branding:
-  icon: 'codesandbox'
+  icon: 'code'
   color: 'blue'
 inputs:
   file:

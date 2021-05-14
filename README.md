@@ -57,7 +57,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build and release action
-        uses: mesopelagique/build-action@releasebeta
+        uses: mesopelagique/build-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
           RELEASE: 1

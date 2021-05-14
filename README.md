@@ -50,6 +50,7 @@ name: release
 
 on:
   release:
+    types: [published]
 
 jobs:
   release:

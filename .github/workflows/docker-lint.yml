@@ -2,7 +2,7 @@ name: Docker Lint
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths: 
       - '.dockerignore'
       - '.github/workflows/docker-lint.yml'

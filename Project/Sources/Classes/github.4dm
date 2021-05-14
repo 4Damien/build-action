@@ -29,6 +29,12 @@ Function postArtefact($artefact : 4D:C1709.File)->$result : Object
 			$result:=New object:C1471("success"; False:C215; "statusText"; "Not corrected event type "+String:C10(This:C1470["GITHUB_EVENT_NAME"])+". expected release.")
 		: (Length:C16(String:C10(This:C1470["GITHUB_TOKEN"]))=0)
 			$result:=New object:C1471("success"; False:C215; "statusText"; "No token to upload release.")
+		: (Length:C16(String:C10(This:C1470["GITHUB_REPOSITORY"]))=0)
+			$result:=New object:C1471("success"; False:C215; "statusText"; "No GITHUB_REPOSITORY defined.")
+		: (This:C1470.event=Null:C1517)
+			$result:=New object:C1471("success"; False:C215; "statusText"; "No github event data to extract release id.")
+		: (Length:C16(String:C10(This:C1470.event.release.id))=0)
+			$result:=New object:C1471("success"; False:C215; "statusText"; "No release id in event.")
 		Else 
 			var $uploadURL : Text
 			$uploadURL:="https://uploads.github.com/repos/"+This:C1470["GITHUB_REPOSITORY"]+"/releases/"+This:C1470.event.release.id+"/assets?name="+$artefact.fullName

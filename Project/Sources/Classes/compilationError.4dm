@@ -22,7 +22,7 @@ Function printGithub($config : Object)
 	$cmd:=Choose:C955(Bool:C1537(This:C1470.isError); "error"; "warning")
 	
 	var $lineContent : Text
-	$lineContent:=Split string:C1554(This:C1470.code.file.getText("UTF-8"; Document with LF:K24:22); "\n")[This:C1470.lineInFile]
+	$lineContent:=Split string:C1554(This:C1470.code.file.getText("UTF-8"; Document with LF:K24:22); "\n")[This:C1470.lineInFile-1]
 	
 	var $relativePath : Text
 	$relativePath:=Replace string:C233(File:C1566(This:C1470.code.file.platformPath; fk platform path:K87:2).path; $config.workingDirectory; "")

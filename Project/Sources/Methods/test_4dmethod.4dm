@@ -12,7 +12,6 @@ $folderTest:=Folder:C1567(Folder:C1567(fk resources folder:K87:11).platformPath;
 
 $name:="ok"
 $config.file:=$folderTest.folder($name).folder("Project").file($name+".4DProject")
-
 $status:=Compile project:C1760($config.file; $config.options)
 ASSERT:C1129($status.success; "must success")
 

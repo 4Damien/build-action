@@ -28,8 +28,8 @@ Function printGithub($config : Object)
 	$relativePath:=Replace string:C233(File:C1566(This:C1470.code.file.platformPath; fk platform path:K87:2).path; $config.workingDirectory; "")
 	
 	// github action cmd
-	LOG EVENT:C667(Into system standard outputs:K38:9; "::"+$cmd+" file="+String:C10($relativePath)+",line="+String:C10(This:C1470.lineInFile)+"::"+String:C10(This:C1470.message)+"\n")
+	print("::"+$cmd+" file="+String:C10($relativePath)+",line="+String:C10(This:C1470.lineInFile)+"::"+String:C10(This:C1470.message))
 	// print code line too
-	LOG EVENT:C667(Into system standard outputs:K38:9; ""+$cmd+" file="+String:C10(This:C1470.code.file.name)+", line="+String:C10(This:C1470.lineInFile)+": "+$lineContent+"\n")
+	print(""+$cmd+" file="+String:C10(This:C1470.code.file.name)+", line="+String:C10(This:C1470.lineInFile)+": "+$lineContent)
 	
 	

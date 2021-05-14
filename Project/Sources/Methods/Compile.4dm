@@ -7,7 +7,7 @@ $r:=Get database parameter:C643(User param value:K37:94; $startupParam)
 
 If (Length:C16($startupParam)>0)
 	
-	LOG EVENT:C667(Into system standard outputs:K38:9; "...parsing parameters\n")
+	print("...parsing parameters")
 	
 	var $config : Object
 	$config:=JSON Parse:C1218($startupParam)
@@ -18,7 +18,7 @@ If (Length:C16($startupParam)>0)
 		var $databaseFolder : 4D:C1709.Folder
 		$databaseFolder:=$config.file.parent.parent
 		If ($databaseFolder.folder("Components").exists)
-			LOG EVENT:C667(Into system standard outputs:K38:9; "...adding dependencies\n")
+			print("...adding dependencies")
 			$config.components:=New collection:C1472
 			var $dependency : 4D:C1709.Folder
 			For each ($dependency; $databaseFolder.folder("Components").folders())
@@ -29,21 +29,21 @@ If (Length:C16($startupParam)>0)
 		End if 
 	End if 
 	
-	LOG EVENT:C667(Into system standard outputs:K38:9; "...launching compilation\n")
+	print("...launching compilation")
 	var $status : Object
 	$status:=Compile project:C1760($config.file; $config.options)
 	
 	If ($status.success)
-		LOG EVENT:C667(Into system standard outputs:K38:9; "✅ Build success\n")
+		print("✅ Build success")
 	Else 
-		LOG EVENT:C667(Into system standard outputs:K38:9; "‼️ Build failure\n")  // Into system standard error ??
+		print("‼️ Build failure")  // Into system standard error ??
 		If ($status.errors#Null:C1517)
-			LOG EVENT:C667(Into system standard outputs:K38:9; "::group::Compilation errors")
+			print("::group::Compilation errors")
 			var $error : Object
 			For each ($error; $status.errors)
 				cs:C1710.compilationError.new($error).printGithub($config)
 			End for each 
-			LOG EVENT:C667(Into system standard outputs:K38:9; "::endgroup::")
+			print("::endgroup::")
 		End if 
 	End if 
 End if 

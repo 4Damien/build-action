@@ -21,8 +21,15 @@ Function printGithub($config : Object)
 	var $cmd : Text
 	$cmd:=Choose:C955(Bool:C1537(This:C1470.isError); "error"; "warning")
 	
-	var $file : Text
-	$file:=Replace string:C233(File:C1566(This:C1470.code.file.platformPath; fk platform path:K87:2).path; $config.workingDirectory; "")
+	var $lineContent : Text
+	$lineContent:=Split string:C1554(This:C1470.code.file.getText("UTF-8"; Document with LF:K24:22); "\n")[This:C1470.lineInFile]
 	
-	LOG EVENT:C667(Into system standard outputs:K38:9; "::"+$cmd+" file="+String:C10($file)+",line="+String:C10(This:C1470.code.lineInFile)+"::"+String:C10(This:C1470.message)+"\n")
+	var $relativePath : Text
+	$relativePath:=Replace string:C233(File:C1566(This:C1470.code.file.platformPath; fk platform path:K87:2).path; $config.workingDirectory; "")
+	
+	// github action cmd
+	LOG EVENT:C667(Into system standard outputs:K38:9; "::"+$cmd+" file="+String:C10($relativePath)+",line="+String:C10(This:C1470.lineInFile)+"::"+String:C10(This:C1470.message)+"\n")
+	// print code line too
+	LOG EVENT:C667(Into system standard outputs:K38:9; ""+$cmd+" file="+String:C10(This:C1470.code.file.name)+", line="+String:C10(This:C1470.lineInFile)+": "+$lineContent+"\n")
+	
 	

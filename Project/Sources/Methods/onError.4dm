@@ -8,6 +8,7 @@ GET LAST ERROR STACK:C1015($codesArray; $intCompArray; $textArray)
 var $caller : Object
 $caller:=Get call chain:C1662[1]  // 0 is current method
 
+var $metadata : Text
 Case of 
 	: ($caller.type="projectMethod")
 		// {type:projectMethod,name:onServerStart,line:2,database:Compilator}

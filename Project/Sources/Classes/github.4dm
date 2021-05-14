@@ -1,5 +1,3 @@
-
-
 Class constructor
 	This:C1470._parseEnv()
 	
@@ -19,7 +17,7 @@ Function _parseEnv()
 	
 	If (This:C1470["GITHUB_EVENT_PATH"]#Null:C1517)
 		var $eventFile : 4D:C1709.File
-		$eventFile:=File:C1566(This:C1470["GITHUB_EVENT_PATH"])
+		$eventFile:=File:C1566(String:C10(This:C1470["GITHUB_EVENT_PATH"]))
 		This:C1470.event:=JSON Parse:C1218($eventFile.getText())
 	End if 
 	
@@ -37,12 +35,13 @@ Function postArtefact($artefact : 4D:C1709.File)->$result : Object
 			$result:=New object:C1471("success"; False:C215; "statusText"; "No release id in event.")
 		Else 
 			var $uploadURL : Text
-			$uploadURL:="https://uploads.github.com/repos/"+This:C1470["GITHUB_REPOSITORY"]+"/releases/"+This:C1470.event.release.id+"/assets?name="+$artefact.fullName
+			$uploadURL:="https://uploads.github.com/repos/"+String:C10(This:C1470["GITHUB_REPOSITORY"])+"/releases/"+String:C10(This:C1470.event.release.id)+"/assets?name="+String:C10($artefact.fullName)
+			print("... using url "+$uploadURL)
 			
 			ARRAY TEXT:C222($headerNames; 3)
 			ARRAY TEXT:C222($headerValues; 3)
 			$headerNames{1}:="Authorization"
-			$headerValues{1}:="token "+This:C1470["GITHUB_TOKEN"]
+			$headerValues{1}:="token "+String:C10(This:C1470["GITHUB_TOKEN"])
 			$headerNames{2}:="Content-Length"
 			$headerValues{2}:=String:C10($artefact.size)
 			$headerNames{3}:="Content-Type"

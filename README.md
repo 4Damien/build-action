@@ -11,7 +11,17 @@ name: build
 
 on:
   push:
+    branches:
+      - main
+    paths: 
+      - 'Project/**'
+      - '.github/workflows/build.yml'
   pull_request:
+    branches:
+      - main
+    paths: 
+      - 'Project/**'
+      - '.github/workflows/build.yml'
   workflow_dispatch:
 
 jobs:
@@ -23,7 +33,7 @@ jobs:
         uses: mesopelagique/build-action@v1
 ```
 
-In `on` section choose the event that trigger the build.
+In `on` section choose the event that trigger the build. you could limit to some branches, some files, etc...
 
 ## Author
 

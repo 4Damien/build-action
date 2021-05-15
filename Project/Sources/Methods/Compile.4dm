@@ -1,23 +1,27 @@
 //%attributes = {}
 #DECLARE($config : Object)->$status : Object
 
+If ($config.options=Null:C1517)
+	$config.options:=New object:C1471()
+End if 
+
 // adding potential component from folder Components
-If ($config.components=Null:C1517)
+If ($config.options.components=Null:C1517)
 	var $databaseFolder : 4D:C1709.Folder
 	$databaseFolder:=$config.file.parent.parent
 	If ($databaseFolder.folder("Components").exists)
 		print("...adding dependencies")
-		$config.components:=New collection:C1472
+		$config.options.components:=New collection:C1472
 		var $dependency : 4D:C1709.Folder
 		For each ($dependency; $databaseFolder.folder("Components").folders())
 			If ($dependency.file($dependency.name+".4DZ").exists)
-				$config.components.push($dependency.file($dependency.name+".4DZ"))
+				$config.options.components.push($dependency.file($dependency.name+".4DZ"))
 			End if 
 		End for each 
 	End if 
 End if 
 
-print("...launching compilation")
+print("...launching compilation with opt: "+JSON Stringify:C1217($config.options))
 $status:=Compile project:C1760($config.file; $config.options)
 
 If ($status.success)

@@ -8,6 +8,7 @@ runs:
   args:
     - ${{ inputs.file }} 
     - ${{ inputs.fail-on-warning }}
+    - ${{ inputs.compilation-options }}
 branding:
   icon: 'code'
   color: 'blue'
@@ -19,3 +20,7 @@ inputs:
     description: "Failed on warning"
     required: false
     default: 1
+  compilation-options:
+    description: "Some additional compilation options"
+    required: false
+    default: "{}"

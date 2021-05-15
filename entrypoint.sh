@@ -10,6 +10,8 @@ options="{}"
 if [ -z "$projectFile" ]; then
   projectFile=`find $workingDirectory -name "*.4DProject" -not -path "./Components/*" | head -n 1`
   projectFile="$projectFile"
+else
+  projectFile=$(pwd)/$projectFile
 fi
 if [ -z "$failOnWarning" ]; then
   failOnWarning=1 # by default failed

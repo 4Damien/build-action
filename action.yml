@@ -5,6 +5,8 @@ author: mesopelagique
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - "${{ inputs.file }}" "${{ inputs.fail-on-warning }}"
 branding:
   icon: 'code'
   color: 'blue'
@@ -12,4 +14,7 @@ inputs:
   file:
     description: "Path to the project file"
     required: false
-
+  fail-on-warning:
+    description: "Failed on warning"
+    required: false
+    default: 1

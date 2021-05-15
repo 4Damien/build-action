@@ -5,7 +5,11 @@ workingDirectory=$(pwd)
 # parameters
 projectFile=$1
 failOnWarning=$2
-options="{}"
+options=$3
+
+if [ -z "$options" ]; then
+  options="{}"
+fi
 
 if [ -z "$projectFile" ]; then
   projectFile=`find $workingDirectory -name "*.4DProject" -not -path "./Components/*" | head -n 1`

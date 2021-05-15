@@ -32,7 +32,7 @@ Case of
 				
 				var $actions : Collection
 				$actions:=Split string:C1554(String:C10($config.actions); ",")
-				If ($actions.size=0)
+				If ($actions.length=0)
 					$actions.push("build")
 				End if 
 				If (Bool:C1537(Num:C11(String:C10(cs:C1710.github.new()["RELEASE"]))))

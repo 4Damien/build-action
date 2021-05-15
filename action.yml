@@ -6,7 +6,8 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - "${{ inputs.file }}" "${{ inputs.fail-on-warning }}"
+    - ${{ inputs.file }} 
+    - ${{ inputs.fail-on-warning }}
 branding:
   icon: 'code'
   color: 'blue'

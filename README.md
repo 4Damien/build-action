@@ -70,7 +70,9 @@ jobs:
 
 [Example project](https://github.com/mesopelagique/test-build-workflow)
 
-Download this base and a 4d in your workflow file and launch script entrypoint.sh in a worflow step
+Download this base and a 4d in your workflow file and launch script entrypoint.sh in a worflow step.
+
+See example in [workflow folder](https://github.com/mesopelagique/test-build-workflow/tree/main/.github/workflows)
 
 ## Usage of entrypoint.sh
 
@@ -98,7 +100,7 @@ the second arg allow to ignore warnings for exit status code
 /path/to/this/project/build-action/entrypoint.sh "" 0
 ```
 
-### Pass compilato options
+### Pass compilation options
 
 the third arg allow to pass compilation options, see [`Compile project`](https://doc.4d.com/4Dv19/4D/19/Compile-project.301-5457347.en.html)
 

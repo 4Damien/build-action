@@ -72,6 +72,40 @@ jobs:
 
 Download this base and a 4d in your workflow file and launch script entrypoint.sh in a worflow step
 
+## Usage of entrypoint.sh
+
+Move to your database in terminal and then launch
+
+```bash
+/path/to/this/project/build-action/entrypoint.sh
+```
+
+> You need an instance of 4D v19+ inside `/path/to/this/project/build-action/` (4D.app, 4D Server.app)
+
+### Pass the project file
+
+If there is more one project in your current directory pass it as first argument
+
+```bash
+/path/to/this/project/build-action/entrypoint.sh "a/path/Project/base.4DProject"
+```
+
+### Ignore warnings
+
+the second arg allow to ignore warnings for exit status code
+
+```bash
+/path/to/this/project/build-action/entrypoint.sh "" 0
+```
+
+### Pass compilato options
+
+the third arg allow to pass compilation options, see [`Compile project`](https://doc.4d.com/4Dv19/4D/19/Compile-project.301-5457347.en.html)
+
+```bash
+/path/to/this/project/build-action/entrypoint.sh "" "" "{\"typeInference\": \"none\"}"
+```
+
 ## How it works
 
 We launch the current project database with a downloaded 4D or 4D server and pass as parameters the database to compile.

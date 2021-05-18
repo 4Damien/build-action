@@ -34,14 +34,17 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 # launch compiler
 if [[ "$OSTYPE" == "darwin"* ]]; then # Mac OSX
+  compilerOptions="--dataless --headless"
   compiler="$DIR/4D.app/Contents/MacOS/4D"
   if [ ! -f "$compiler" ]; then
     compiler="$DIR/tool4d.app/Contents/MacOS/4D"
   fi
   if [ ! -f "$compiler" ]; then
     compiler="$DIR/4D Server.app/Contents/MacOS/4D Server"
+    compilerOptions="--dataless"
   fi
 else # linux based
+  compilerOptions="--dataless"
   compiler=$DIR/bin/4d-server 
 fi
 

@@ -81,8 +81,8 @@ https://blog.4d.com/launch-a-compilation-by-programming/
 
 ### options
 
-| option | description | blog  |
-|---|---|
+| option | description | blog|
+|---|---|---|
 |`--headless` | if not a server app | https://blog.4d.com/headless-4d-applications/|
 |`--user-param`| to pass parameters such as the database to compile | https://blog.4d.com/improving-databases-tests/|
 

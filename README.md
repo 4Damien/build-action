@@ -72,6 +72,20 @@ jobs:
 
 Download this base and a 4d in your workflow file and launch script entrypoint.sh in a worflow step
 
+## How it works
+
+We launch the current project database with a downloaded 4D or 4D server and pass as parameters the database to compile.
+
+The v19 new command `Compile project` is used for the compilation.
+https://blog.4d.com/launch-a-compilation-by-programming/
+
+### options
+
+| option | description | blog  |
+|---|---|
+|`--headless` | if not a server app | https://blog.4d.com/headless-4d-applications/|
+|`--user-param`| to pass parameters such as the database to compile | https://blog.4d.com/improving-databases-tests/|
+
 ## Author
 
 [Eric Marchand](https://github.com/mesopelagique/)

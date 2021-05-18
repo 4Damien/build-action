@@ -26,3 +26,15 @@ If ($status.errors#Null:C1517)
 		cs:C1710.compilationError.new($error).printGithub($config)
 	End for each 
 End if 
+
+$name:="warning"
+$config.file:=$folderTest.folder($name).folder("Project").file($name+".4DProject")
+$status:=Compile project:C1760($config.file; $config.options)
+ASSERT:C1129($status.success; "must success")
+
+If ($status.errors#Null:C1517)
+	var $error : Object
+	For each ($error; $status.errors)
+		cs:C1710.compilationError.new($error).printGithub($config)
+	End for each 
+End if 

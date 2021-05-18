@@ -25,16 +25,20 @@ print("...launching compilation with opt: "+JSON Stringify:C1217($config.options
 $status:=Compile project:C1760($config.file; $config.options)
 
 If ($status.success)
-	print("✅ Build success")
-Else 
 	If ($status.errors#Null:C1517)
-		print("::group::Compilation errors")
-		var $error : Object
-		For each ($error; $status.errors)
-			cs:C1710.compilationError.new($error).printGithub($config)
-		End for each 
-		print("::endgroup::")
+		print("⚠️ Build success with warnings")
+	Else 
+		print("✅ Build success")
 	End if 
+Else 
 	print("‼️ Build failure")  // Into system standard error ??
+End if 
+If ($status.errors#Null:C1517)
+	print("::group::Compilation errors")
+	var $error : Object
+	For each ($error; $status.errors)
+		cs:C1710.compilationError.new($error).printGithub($config)
+	End for each 
+	print("::endgroup::")
 End if 
 

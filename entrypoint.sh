@@ -68,6 +68,7 @@ do
     >&2 echo "$line"
     statusCode=1
   elif [[ $failOnWarning -eq 1 ]] && [[ $line == *"::warning"* ]]; then
+    echo "$line"
     statusCode=2
   else
     echo "$line"

@@ -35,10 +35,10 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 # launch compiler
 if [[ "$OSTYPE" == "darwin"* ]]; then # Mac OSX
   compiler="$DIR/4D.app/Contents/MacOS/4D"
-  if [ ! -d "$compiler" ]; then
+  if [ ! -f "$compiler" ]; then
     compiler="$DIR/tool4d.app/Contents/MacOS/4D"
   fi
-  if [ ! -d "$compiler" ]; then
+  if [ ! -f "$compiler" ]; then
     compiler="$DIR/4D Server.app/Contents/MacOS/4D Server"
   fi
 else # linux based
@@ -54,7 +54,7 @@ output="$tmp_dir/build.log" # redirect because 4D do not use stderr and return a
 echo "⚙️ Launching compilation database"
 
 # echo "▪️ $compiler $options -p $builder --user-param {\"path\":\"$projectFile\",\"options\":{}}"
-$compiler $compilerOptions -p "$builder" --user-param "{\"path\":\"$projectFile\", \"workingDirectory\":\"$workingDirectory\" ,\"options\":$options}" > $output 2>&1
+"$compiler" $compilerOptions -p "$builder" --user-param "{\"path\":\"$projectFile\", \"workingDirectory\":\"$workingDirectory\" ,\"options\":$options}" > $output 2>&1
 statusCode=$?
 
 echo "" >> $output # ensure a blanc final line

@@ -29,7 +29,7 @@ Function printGithub($config : Object)
 	
 	// github action cmd
 	print("::"+$cmd+" file="+String:C10($relativePath)+",line="+String:C10(This:C1470.lineInFile)+"::"+String:C10(This:C1470.message))
-	// print code line too
-	print(""+$cmd+" file="+String:C10(This:C1470.code.file.name)+", line="+String:C10(This:C1470.lineInFile)+": "+$lineContent)
+	// simple print too with code line
+	print(""+$cmd+" file="+String:C10($relativePath)+", line="+String:C10(This:C1470.lineInFile)+": "+$lineContent)
 	
 	

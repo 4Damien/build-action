@@ -49,7 +49,6 @@ else # linux based
 fi
 
 builder="$DIR/Project/Compilator.4DProject"
-compilerOptions="--dataless"
 
 tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
 output="$tmp_dir/build.log" # redirect because 4D do not use stderr and return a correct status code according to build result

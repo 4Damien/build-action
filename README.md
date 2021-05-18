@@ -1,12 +1,14 @@
 # build-action
 
-This action compile the 4D database and could upload compiled code to release.
+This github action compile the 4D database and could upload compiled code to release.
 
-⛔️ This project depend on some private access to 4d server instance. So you could not use it in your project.
+⛔️ This project depend on some private access to 4d server instance. So you cannot use it in your project.
 
-[test project](https://github.com/mesopelagique/test-build-action)
+But you could use the 4D database in simple github worflow on macOS if you provide the 4D. See [## Usage in workflow](#usage-in-workflow)
 
-## Usage
+## Usage of action
+
+[Example project](https://github.com/mesopelagique/test-build-action)
 
 ### to check if your code compile when pushing or when making a pull request
 
@@ -63,6 +65,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
           RELEASE: 1
 ```
+
+## Usage in workflow
+
+[Example project](https://github.com/mesopelagique/test-build-workflow)
+
+Download this base and a 4d in your workflow file and launch script entrypoint.sh in a worflow step
 
 ## Author
 

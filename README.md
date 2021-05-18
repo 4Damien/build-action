@@ -2,9 +2,12 @@
 
 This github action compile the 4D database and could upload compiled code to release.
 
-⛔️ This project depend on some private access to 4d server instance. So you cannot use it in your project.
+[![build](https://github.com/mesopelagique/build-action/actions/workflows/build.yml/badge.svg)](https://github.com/mesopelagique/build-action/actions/workflows/build.yml?query=branch%3Amain)
 
-But you could use the 4D database in simple github worflow on macOS if you provide the 4D. See [## Usage in workflow](#usage-in-workflow)
+
+⛔️ This project depend on some private access to 4d server instance. So you cannot use it in your project as described in [usage of action](#usage-of-action)
+
+💡 But you could use this 4D database in a simple github worflow if you provide the 4D app. See [usage in workflow](#usage-in-workflow)
 
 ## Usage of action
 
@@ -65,6 +68,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
           RELEASE: 1
 ```
+
+here we 
+- pass env var RELEASE to launch release workflow
+- provide github token to be able to upload to current release
 
 ## Usage in workflow
 
